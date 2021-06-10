@@ -1,2 +1,2 @@
-# zoobooks-github-io
+# zoobooks.github.io
 My First Website
