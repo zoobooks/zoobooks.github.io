@@ -4,10 +4,10 @@
         <title>Zack's Infernal Knowledge Chasm</title>
         <style type="text/css">
             body {
-                background: rgb(0, 0, 0);
-                color: rgb(45, 45, 45);
+                background-image: radial-gradient(circle, #000000, #0a0406, #12080d, #170c13, #1b1018, #1b1018, #1b1018, #1b1018, #170c13, #12080d, #0a0406, #000000);
+                color: purple;
                 padding: 10px;
-                font-family: arial;
+                font-family: Andale Mono, monospace;
             }
             header {
                 font-size: 1.5em;
@@ -23,15 +23,19 @@
     
             /* navigation menu */
             nav {
-                background: rgb(0, 0, 34);
+                background: rgb(0,0,0);
+                background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(14,7,29,1) 60%, rgba(12,2,18,1) 100%);
+                opacity: 0.5;
                 margin: 0 auto;
                 display: flex;
                 padding: 10px;
+                border-style: solid;
+                border-color: purple;
             }
             nav header {
                 display: flex;
                 align-items: center;
-                color: rgb(255, 255, 255);
+                color: purple;
                 flex: 1;
             }
             nav ul {
@@ -49,7 +53,10 @@
             /* main container area beneath menu */
             main {
                 background: rgb(0, 0, 0);
+                opacity: 0.5;
                 display: flex;
+                border: solid;
+                
             }
             .content {
                 flex: 1;
@@ -84,10 +91,9 @@
         <nav>
             <header>Zack's Infernal Knowledge Chasm</header>
             <ul>
-                <li><a href="index.html">Home</a>
-                </li>
-                <li><a href="portfolio.html">Portfolio</a>
-                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="studies.html">Studies</a></li>
             </ul>
         </nav>
         <main>

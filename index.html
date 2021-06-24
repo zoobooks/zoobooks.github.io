@@ -4,10 +4,10 @@
       <title>Zack's Infernal Knowledge Chasm</title>
       <style>
     body {
-        background: rgb(0, 0, 0);
-        color: rgb(255, 0, 0);
+        background-image: radial-gradient(circle, #000000, #0a0406, #12080d, #170c13, #1b1018, #1b1018, #1b1018, #1b1018, #170c13, #12080d, #0a0406, #000000);
+        color: purple;
         padding: 10px;
-        font-family: arial;
+        font-family: Andale Mono, monospace;
     }
     #all-contents {
         max-width: 800px;
@@ -16,15 +16,19 @@
 
     /* navigation menu */
     nav {
-        background: rgb(239, 80, 41);
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(14,7,29,1) 60%, rgba(12,2,18,1) 100%);
+        opacity: 0.5;
         margin: 0 auto;
         display: flex;
         padding: 10px;
+        border-style: solid;
+        border-color: purple;
     }
     nav h1 {
         display: flex;
         align-items: center;
-        color: white;
+        color: purple;
         flex: 1;
         margin: 0;
     }
@@ -43,7 +47,9 @@
     /* main container area beneath menu */
     main {
         background: rgb(0, 0, 0);
+        opacity: 0.5;
         display: flex;
+        border: solid;
     }
     .sidebar {
         margin-right: 25px;
@@ -74,7 +80,7 @@
           </nav>
           <main>
               <div class="sidebar">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Dore_woodcut_Divine_Comedy_01.jpg/800px-Dore_woodcut_Divine_Comedy_01.jpg">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Dore_woodcut_Divine_Comedy_01.jpg/800px-Dore_woodcut_Divine_Comedy_01.jpg" border="2">
               </div>
               <div class="content">
                   <h2>
@@ -86,9 +92,12 @@
                   <div id="interests">
                       <h3>Interests</h3>
                       <ul>
-                          <li>Playing music</li>
+                          <li>Playing Music</li>
                           <li>Chess</li>
                           <li>Weightlifting</li>
+                          <li>Black Metal</li>
+                          <li>Cycling</li>
+                          <li>CSGO</li>
                       </ul>
                   </div>
               </div>
