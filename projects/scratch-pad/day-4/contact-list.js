@@ -35,10 +35,11 @@
 
 function makeContact(id, nameFirst, nameLast) {
     //contact is an object literal with an id, first name, and last name that we have to eventually return
-    const contact = {}
-    contact.id = id;
-    contact.nameFirst = nameFirst;
-    contact.nameLast = nameLast;
+    const contact = {
+        id: id,
+        nameFirst: nameFirst,
+        nameLast: nameLast
+    };
     return contact;
 }
 
