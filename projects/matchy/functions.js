@@ -70,8 +70,8 @@ function add(animals, animal){
         //if the name already exists matching another animal then the test fails, decrement
         if(animals.find(obj => obj.name === animal.name)){
             testPass--;
-        }//the function will return true if there are 3 passing tests
-        return testPass === 3 ? true : false;
+        }//the function will return true if there are 2 passing tests
+        return testPass === 2 ? true : false;
     }//if the test function is true then push the animal arguement into the array
     if(test()===true){
         return animals.push(animal);
