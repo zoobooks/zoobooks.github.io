@@ -101,7 +101,7 @@
       assert.equal(isFriend("jimmy",{friends:["bobby", "ralf"]}), false);
       assert.equal(isFriend("ralf",{friends:["bobby", "ralf"]}), true);
       assert.equal(isFriend("chuck",{}), false);
-    });
+    }); 
 
     /* global nonFriends */
     QUnit.test("nonFriends() : Should take a name and a list of people, and return a list of all the names that <name> is not friends with", function(assert){

@@ -56,23 +56,11 @@ function remove(animals, name){
 //create a function add that takes 2 paramenters, animals (array) and animal (object)
 function add(animals, animal){
     //we need to validate data before we push the animal to the array so we create a test function
-    function test(){
-        //this will tally passing tests
-        let testPass = 0;
-        //if the name of the input animal is greater than 0 then the first test is passed, increment
-        if(animal.name.length > 0){
-            testPass++;
-        }
-        //if the species of the input animal is greater than 0 then the first test is passed, increment
-        if(animal.species.length > 0){
-            testPass++;
-        }
-        //if the name already exists matching another animal then the test fails, decrement
-        if(animals.find(obj => obj.name === animal.name)){
-            testPass--;
-        }//the function will return true if there are 2 passing tests
-        return testPass === 2 ? true : false;
-    }//if the test function is true then push the animal arguement into the array
+                    // animal name and length are greater than 0 and we can't find another animal with the same name return true 
+                                // if these three conditions all pass as true the function returns true otherwise false
+    let test = () => animal.name.length > 0 && animal.species.length > 0 && !(animals.find(obj => obj.name === animal.name)) ? true : false;
+
+    //if the test function is true then push the animal arguement into the array
     if(test()===true){
         return animals.push(animal);
     }
