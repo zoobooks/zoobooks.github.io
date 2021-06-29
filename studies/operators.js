@@ -10,7 +10,7 @@
  */
  //this assigns the number 1 to x
  let x = 1;
- let y = null; //we will use this later
+ let y = null; //we will use this later but this did just get assigned to null
  console.log(x);//prints 1
  
 // 2. Aritmetic Operators are operators that perform mathematical computations on operands, like +. -, /, and *
@@ -37,7 +37,7 @@ console.log(10 / 5);//prints 2
 *    lastly "?? nullish coalescing. The or evaulates to two conditions having the same effect to operator on data if one conidtion
 *    evaluates to true then the statment will be true. AND operator has two expressions that both have to be true in or to execute.
 *    Not takes a statement that you know to be true but through negation means that something is the opposite to execute. Nullish
-*    coalescing returns the right hand operand when the left hand operand is null or undefined.
+*    coalescing returns the right hand operand when the left hand operand is null or undefined. These provide a singal boolean output.
 */
 
 if(x > 1 || x === 1){//this would check if our x above would be greater than one OR equal to it, this would executre the block below it
@@ -55,3 +55,12 @@ else if( y === true ?? x === 1){//this checks to see if y is null, which it is b
 else{
     console.log("This will never execute");
 }
+
+/*
+* 4. Comparison Operators compare values and return true or false
+*
+*
+*
+*
+*
+*/
