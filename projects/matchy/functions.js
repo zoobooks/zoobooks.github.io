@@ -62,7 +62,7 @@ function add(animals, animal){
 
     //if the test function is true then push the animal arguement into the array
     if(test()===true){
-        return animals.push(animal);
+        return animals.push(animal); 
     }
 }
 
