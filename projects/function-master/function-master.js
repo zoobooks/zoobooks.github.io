@@ -131,40 +131,54 @@ function isFriend(name, object) {
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//this function produces a list of people the inputed name ISNT friends with
 function nonFriends(name, array) {
-    let arrayNames = array.map((i) => { return i.name;});
+    //first we compile a list of all the people with the data
+    let arrayNames = array.map((i) => i.name);
+    //then we filter out the name of the person in the list
     let arrayNames2 = arrayNames.filter((i) => i !== name);
+    //initialize a friend Arr
     let friendArr = [];
-
+    
+    //array. length is the list of people 
     for(let i = 0; i < array.length; i++){
+        //this filters out all of the people that the named person is friends with
       if(name.toLowerCase()===array[i].name.toLowerCase()){
-        friendArr = array[i].friends;
+        friendArr = array[i].friends;//and adds it to this array
       }
-    }
-    arrayNames.find(element => element === name);
+    }//in this we filter out the people in the data if they're including in the person's friend array and return it
     return arrayNames2.filter(element => friendArr.includes(element)===false);
 }
-
-
-
-
-
- 
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+
+//this takes an object, a key, and a value
 function updateObject(object, key, value) {
-
+  if(object.hasOwnProperty(key)){       //if the object has the key
+    object[key] = value;                //reassign the value
+    return object;                      //and then return the object
+  }
+  else{
+      object[key] = value;              //otherwise just create the value
+      return object;                    //then return the object
+  }
+  
 }
-
-//////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    for(let key in object){
+        for(let i = 0; i < array.length; i++){
+            if(array[i].match(key)){
+                delete object[key];
+            }
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
