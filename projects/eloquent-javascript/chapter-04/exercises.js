@@ -96,17 +96,18 @@ function listToArray(linkList) {    //this function returns an array from a link
 ////////////////////////////////////////////////////////////////////////////////
 
 //inserts value into list at first position (before all other elements
-function prepend(value, list) {
-    
-
+function prepend(value, list) {     //this function takes the arguements value and list
+    let arr = listToArray(list);    //convert the list into an array with our listToArray function
+    arr.unshift(value);             //unshift the given value to the front of the list
+    return arrayToList(arr);        //convert the array back into a list and return it
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, n) {             //Returns n-th value in given list, takes a list and a number
+    return listToArray(list)[n];    //convert list to array with our function, return the contents of the n'th index
 }
 
 ////////////////////////////////////////////////////////////////////////////////
