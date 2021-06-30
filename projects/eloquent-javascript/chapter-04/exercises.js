@@ -2,33 +2,44 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end, step) {//create an array to store numbers in
-    let arr = [];
-    //if the start number is larger than the end number it calls the negative loop
-    return start === end ? [] : start > end ? neg(start, end) : pos(start, end);
+function range(start, end, step){
+    let result = [];            //initialize array
+    return start === end ? result : start > end ? neg(start, end, step) : pos(start, end, step);
+    //this returns an empty array is start and end are equal, if they aren't it calls either the positve range or negative range functions
 
-    //postive loop starts at start number and pushes the current number to the array, ends with a returned array
-    function pos(start, end){
-        for(let i = start; i <= end; i++){
-            arr.push(i);
+    function pos(start, end, step){
+        if(step < 1){                           //if the step is a negative number the function returns an empty array
+            return result;
         }
-        return arr;
+        else if(step === undefined){            //if the step is undefined we set the step to 1
+            step = 1;
+        }
+        for(let i = start; i <= end; i += step){//this is the start of the positve array, array increments by the step
+            result.push(i);                     //push each i to array;
+        }
+        return result;                          //the final return
     }
-    //negative loop counts backwards and pushes those numbers to the array, ends with a returned array
-    function neg(start, end){
-        for(let i = start; i >= end; i--){
-            arr.push(i);
+    function neg(start, end, step){
+        if(step > 1){                           //if the step is a positive number for the negative function, return empty array
+            return result;
         }
-        return arr;
+        else if(step === undefined){            //if the step is undefined, set the step to negative 1
+            step = -1;
+        }
+        for(let i = start; i >= end; i -= step){//negative array starts at end decrements by the step
+            result.push(i);
+        }
+        return result;                          //return the result
     }
 }
-
+        
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
-
+function sum(arr) {
+    //this reduce function adds all elements in an array and returns it
+    return arr.reduce((x , y) => x + y, 0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,21 +47,33 @@ function sum() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArray(arr) {
+    //this reverse array is a pure function that copies each element to a new array
+    let revArr = [];
+    //start at the new arrays first index, and our inputs last index
+    //loop stops when at array.length, our new array increments, input decrements
+    for(let i = 0, j = arr.length - 1; i < arr.length; i++ , j--){
+        revArr[i] = arr[j];         //copy each element of old array to new
+    }
+    return revArr;                  //return the new array
+}
   
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace(arr) {
+function reverseArrayInPlace(arr) {     //reverse in place takes in an array as arg
+    return arr.reverse();               //and reverses it in place with reverse function
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(arr) {
+    //this send an array to a list by using reduceRight on the input array
+    //each element in array has a value from array and the rest points to the other element from the end
+    return arr.reduceRight((rest, value) => ({rest, value}), null);     //null is the initial value
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,8 +104,10 @@ function nth() {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
+function deepEqual(x, y) {
+    //this function takes 2 arguements and serializes everything and compares every part of it
+    //if x and y are actually alike then the function will return true, otherwise false
+    return JSON.stringify(x) === JSON.stringify(y) ? true : false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

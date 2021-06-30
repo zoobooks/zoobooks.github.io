@@ -171,11 +171,12 @@ function updateObject(object, key, value) {
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+//this function looks through an array of strings for matching key names in an object
 function removeProperties(object, array) {
-    for(let key in object){
-        for(let i = 0; i < array.length; i++){
-            if(array[i].match(key)){
-                delete object[key];
+    for(let key in object){                     //first we have to start looping through each key value pair
+        for(let i = 0; i < array.length; i++){  //for each one we loop through the whole array
+            if(array[i].match(key)){            //looking for a match against the current key we're on, if theres a match
+                delete object[key];             //delete the current key we're ons
             }
         }
     }
