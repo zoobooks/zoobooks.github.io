@@ -5,12 +5,9 @@
 
 //function triangles takes a number and prints a row of triangles going down based upon the number
 function triangles(num) {
-  //initialize string
-  let str = "";
-  //while the strings length is less than the input
-  while(str.length < num){
-    //increment a pound sign to the string and console log it
-    str += "#";
+  let str = "";               //initialize string
+  while(str.length < num){    //while the strings length is less than the input
+    str += "#";               //increment a pound sign to the string and console log it
     console.log(str);
   }
 }

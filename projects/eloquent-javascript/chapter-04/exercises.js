@@ -80,15 +80,24 @@ function arrayToList(arr) {
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(linkList) {    //this function returns an array from a linked list
+    let result = [];                //initilize an array to store Linked List values
+    let head = linkList;            //set the linked list to head
+    
+    while (head !== null){          //while the head is not equal to null (null is the last value)
+        result.push(head.value);    //push each value to the array
+        head = head.rest;           //then set the head to the next list    list-->list-->list
+    }
+    return result;                  //return the array of values
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
+//inserts value into list at first position (before all other elements
+function prepend(value, list) {
+    
 
 }
 
