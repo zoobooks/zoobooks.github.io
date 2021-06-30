@@ -132,9 +132,24 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-    
+    let arrayNames = array.map((i) => { return i.name;});
+    let arrayNames2 = arrayNames.filter((i) => i !== name);
+    let friendArr = [];
+
+    for(let i = 0; i < array.length; i++){
+      if(name.toLowerCase()===array[i].name.toLowerCase()){
+        friendArr = array[i].friends;
+      }
+    }
+    arrayNames.find(element => element === name);
+    return arrayNames2.filter(element => friendArr.includes(element)===false);
 }
-    
+
+
+
+
+
+ 
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
