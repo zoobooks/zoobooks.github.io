@@ -10,7 +10,11 @@ function flatten(arr) {               //this takes an array of nested arrays and
 // loop ////////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function loop(value, test, update, body) {
+function loop(value, test, update, body) {            //create a function like a loop that takes value, test, update, body arguements
+  if (test(value)){                                   //if the test on the value returns true
+    body(value);                                      //call the body function on the current value
+    return loop(update(value), test, update, body);   //then recursively call the loop function again with an updated value
+  }                                                   //if the test, tests false the function will stop looping
 }
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -30,9 +34,63 @@ function every(arr, test) {             //this function tests every element of a
 // dominantDirection ///////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-function dominantDirection() {
-
+function dominantDirection(text) {
+  let resultArr = [];
+  
+  //The three functions below were included in "Helpers .js"
+  function countBy(items, groupName) {        
+    let counts = [];
+    for (let item of items) {
+      let name = groupName(item);
+      let known = counts.findIndex(c => c.name == name);
+      if (known == -1) {
+        counts.push({
+          name,
+          count: 1
+        });
+      } else {
+        counts[known].count++;
+      }
+    }
+    return counts;
+  }
+  
+  function characterScript(code) {
+    for (let script of window.SCRIPTS) {  //had to alter this so the SCRIPTS were able to be accessd globally
+      if (script.ranges.some(([from, to]) => {
+          return code >= from && code < to;
+        })) {
+          console.log(script);
+        return script;
+      }
+    }
+    return null;
+  }
+  
+  
+  function textScripts(text) {
+    let scripts = countBy(text, char => {
+      let script = characterScript(char.codePointAt(0));
+      return script ? script.direction : "none"; //edited the original textscripts function to return the direction instead of the name
+    }).filter(({name}) => name != "none");
+  
+    let total = scripts.reduce((n, {count}) => n + count, 0);
+    if (total == 0) return "No scripts found";
+  
+    return scripts.map(({name,count}) => {
+      return `${Math.round(count * 100 / total)}% ${name}`;
+    }).join(", ");
+  }
+  
+  let textResult = textScripts(text); //this textResult holds textscipts new answer
+  /*
+  * after assigning textScripts to return the direction instead of name
+  * next i want to scan the string result for white spaces so i can send (if there are)
+  * multiple answers to an array and then I can potentially evaluate each element
+  */
+  console.log(textResult);
 }
+  
 
 // /////////////////////////////////////////////////////////////////////////////
 //  //////////////////////////////////////////////////////
