@@ -248,16 +248,14 @@ _.unique = function (array){
 *   use _.each in your implementation
 */
 
-_.filter = function (arr, action){
+_.filter = function (arr, func){
     let result = [];
-    if(_.typeOf(arr)==="array"){
-        for(let i = 0; i < arr.length; i++){
-            if(action(arr[i])===true){
-                result.push(arr[i]);
-            }
+    _.each(arr, function(e,i,a){
+        if(func(e,i,a)===true){
+            result.push(e);
         }
-        return result;
-    }
+        });
+    return result;
 };
 
 
@@ -273,6 +271,16 @@ _.filter = function (arr, action){
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function (arr, func){
+    let result = [];
+    _.each(arr, function(e,i,a){
+        if(func(e,i,a)===false){
+            result.push(e);
+        }
+        });
+    return result;
+};
 
 
 /** _.partition
@@ -293,6 +301,13 @@ _.filter = function (arr, action){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function (arr, func){
+    let result = [];
+    let truArr = _.filter(arr, func); 
+    let falArr = _.reject(arr, func);
+    result.push(truArr, falArr);
+    return result;
+};
 
 
 /** _.map
@@ -310,6 +325,20 @@ _.filter = function (arr, action){
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+_.map = function (collection, func){
+    let result = [];
+    if(_.typeOf(collection)==='array'){
+        _.each(collection, function(e,i,a){
+            result.push(func(e,i,a));
+        });
+    }
+    if(_.typeOf(collection)==='object'){
+        _.each(collection, function(e,i,a){
+            result.push(func(e,i,a));
+        });
+    }
+    return result;
+};
 
 
 /** _.pluck
@@ -322,6 +351,12 @@ _.filter = function (arr, action){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+_.pluck = function (arr, prop){
+    return _.map(arr, function(obj){
+        return obj[prop];
+    });
+};
 
 
 /** _.every
@@ -344,7 +379,31 @@ _.filter = function (arr, action){
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
+_.every = function (collection, func){
+    if(func !== undefined){
+        if(_.typeOf(collection)==='array'){
+            return _.filter(collection, func).length === collection.length ? true : false;
+        }
+        if(_.typeOf(collection)==='object'){
+            for (let key in collection) {
+                if(func(collection[key], key, collection)===false){
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+    else{
+        if(_.typeOf(collection)==='array'){
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i]===false){
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+};
 
 /** _.some
 * Arguments:
@@ -366,7 +425,36 @@ _.filter = function (arr, action){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = function (collection, func){
+    if(func !== undefined){
+        if(_.typeOf(collection)==='array'){
+            for(let i = 0; i < collection.length; i++){
+                if(func(collection[i])===true){
+                    return true;
+                }
+            }
+            return false;
+        }
+        if(_.typeOf(collection)==='object'){
+            for (let key in collection) {
+                if(func(collection[key], key, collection)===true){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    else{
+        if(_.typeOf(collection)==='array'){
+            for(let i = 0; i < collection.length; i++){
+                if(collection[i]===true){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+};
 
 /** _.reduce
 * Arguments:
@@ -386,7 +474,22 @@ _.filter = function (arr, action){
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+_.reduce = function (collection, func, seed){
+    if(!collection.length && seed===undefined){
+        throw new TypeError("Reduce of empty array and no initial value!");
+    }
+    let accumulator = seed;
+    let index = 0;
+    if(seed===undefined){
+        accumulator = collection[0];
+        index = 1;
+    }
+    for(; index < collection.length; index++){
+        accumulator = func(accumulator, collection[index], index, collection);
+    }
+    return accumulator;
 
+};
 
 /** _.extend
 * Arguments:
@@ -402,6 +505,10 @@ _.filter = function (arr, action){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function (obj1, ...obj2){
+    return Object.assign(obj1, ...obj2);
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
