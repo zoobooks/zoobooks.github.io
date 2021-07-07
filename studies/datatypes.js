@@ -10,7 +10,7 @@
 //Numbers
 
 /*
-* Numbers are used to represent a positive or negative number, they're considered a primitivie wrapper type.
+* Numbers a primitive datatype used to represent a positive or negative integer, they're considered a primitive wrapper type.
 */
 
 let num = 23;       //we just assigned the number 23 to x
