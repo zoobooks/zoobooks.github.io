@@ -7,16 +7,6 @@
 * require static type checking. 
 */
 
-//THE SIX PRIMITIVE DATA TYPES ARE
-//undefined
-//Boolean
-//Number
-//String
-//BigInt
-//Symbol
-
-
-
 //Numbers
 
 /*
