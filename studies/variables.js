@@ -102,7 +102,7 @@ console.log(myVariable); // now prints "someString" because it was redefined
  // More on Temporal Deadzones
  
  /*
- * To reiterate the TDZ is when variables are not reachable to the interpreter because they're not declared, they maybe scope to their blocks, or like var
+ * To reiterate the TDZ is when variables are not reachable to the interpreter because they're not declared, they maybe scoped to their blocks, or like var
  * globally scoped but they're not initialized, this in turns is the cause of references errors, unless its a var and then it is a reference error. 
  * Declaring a variable is setting a spot in memory for a value, initializing a variable is putting "something" in that metaphorical box. There is a point to
  * the temporal deadzone, point being it helps handles errors. Javascript rational semantics overall would be less rational if one could just declare const
