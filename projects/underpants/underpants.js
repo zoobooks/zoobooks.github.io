@@ -474,18 +474,18 @@ _.some = function (collection, func){                               //some takes
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-_.reduce = function (collection, func, seed){                               //reduce takes an array, a callback function, and an initial value
-    if(!collection.length && seed===undefined){                             //if there is no array and the initial value is not given
+_.reduce = function (arr, func, seed){                                      //reduce takes an array, a callback function, and an initial value
+    if(!arr.length && seed===undefined){                                    //if there is no array and the initial value is not given
         throw new TypeError("Reduce of empty array and no initial value!"); //throw and error
     }
     let accumulator = seed;                                                 //set our accumulator to the initial value
     let index = 0;                                                          //and set our loops index start place
     if(seed===undefined){                                                   //if initial value is not give
-        accumulator = collection[0];                                        //reset accumulator to the first index in the array
+        accumulator = arr[0];                                                //reset accumulator to the first index in the array
         index = 1;                                                          //and our new starting position in the loop is set to "1"
     }
-    for(; index < collection.length; index++){                              //start looping through the array all the way to the end of its length
-        accumulator = func(accumulator, collection[index], index, collection);//for each iteration accumulator is set to the callback functions return from
+    for(; index < arr.length; index++){                                     //start looping through the array all the way to the end of its length
+        accumulator = func(accumulator, arr[index], index, arr);            //for each iteration accumulator is set to the callback functions return from
     }                                                                       //performing whatever action on the accumulator, element, index, and the whole array
     return accumulator;                                                     //when array is done return our new reduced result
 
@@ -507,7 +507,7 @@ _.reduce = function (collection, func, seed){                               //re
 */
 
 _.extend = function (obj1, ...obj2){                    //extend takes multiple items as an arguement
-    return Object.assign(obj1, ...obj2);                //then assigns each property in each object to each other with the spread operator, then returns those objects
+    return Object.assign(obj1, ...obj2);                //then assigns each property in each object to each other with the spread operator, then returns those
 };
 
 //////////////////////////////////////////////////////////////////////
