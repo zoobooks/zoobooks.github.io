@@ -73,7 +73,7 @@ function funkyBoi4(){                   // function declaration
 
 funkyBoi4();                            //we call the function and it calls the inside function and prints to console "lemon lime"
 
-console.log(lemon);                     //if we try to console log "lemon" we get a reference error because it is bound to the block of funkyBoi4()
+//console.log(lemon);                     //if we try to console log "lemon" we get a reference error because it is bound to the block of funkyBoi4()
 
 // Closures: Functions form closures around the data they house. If an object returned from the Function and is held in memory somewhere (referenced), 
 // that closure stays ALIVE, and data can continue to exist in these closures!

@@ -60,7 +60,7 @@ console.log(myVariable); // now prints "someString" because it was redefined
  }
  
  colorizer();               // this prints to console "red"
- console.log(color1);       // this var however throws a reference error because it's trying to access a var that is function scoped
+ //console.log(color1);       // this var however throws a reference error because it's trying to access a var that is function scoped
  
  
  //let
@@ -71,7 +71,7 @@ console.log(myVariable); // now prints "someString" because it was redefined
  * sub-blocks. Redeclaring a let within the same function or block throws a syntax error.
  */
  
- console.log(car);      // ReferenceError: Cannot access 'car' before initialization
+ //console.log(car);      // ReferenceError: Cannot access 'car' before initialization
  let car = "subaru";    // The above call wouldn't work because the let has to be initialized before the call, this is called the temporal deadzone
  console.log(car);      // This prints to console "subaru"
  car = "dodge";         // also it is totally fine to reassign let
@@ -88,8 +88,8 @@ console.log(myVariable); // now prints "someString" because it was redefined
  
  const pizza = "pepperoni"; // is the initial and only assignment we can have of const
  console.log(pizza);        // this prints to console "pepperoni"
- pizza = "sausage";         // if we attempt to reassign const the console will throw an error
- console.log(pizza);        // TypeError: Assignment to constant variable.
+ //pizza = "sausage";         // if we attempt to reassign const the console will throw an error
+ //console.log(pizza);        // TypeError: Assignment to constant variable.
  
  //Hoisting
  
@@ -109,7 +109,7 @@ console.log(myVariable); // now prints "someString" because it was redefined
  * and it were accessible anywhere in the program, this example would cause a lot of problems due to hoisting.
  */
  
- console.log(dog);          // ReferenceError: Cannot access 'dog' before initialization
+ //console.log(dog);          // ReferenceError: Cannot access 'dog' before initialization
  //DEADZONE
  //DEADZONE
  //DEADZONE

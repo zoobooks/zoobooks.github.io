@@ -51,9 +51,6 @@ else if(x < 1 && x.typeof("number")){ //this would check if x is less than 1, an
 else if(x!==1){     //this not would not execute the code because x IS equal to 1, it would only execute the block if it were equal to
     console.log("this won't execute"); //anything else but one
 }
-else if( y === true ?? x === 1){//this checks to see if y is null, which it is but would still execute because x IS equal to 1.
-    console.log("This would typically execute if the first if wasn't here");
-}
 else{
     console.log("This will never execute");
 }
