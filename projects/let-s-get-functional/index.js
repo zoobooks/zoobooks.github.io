@@ -78,13 +78,13 @@ var friendFirstLetterCount = function(array, name, char){           // takes an 
 };
 
 var friendsCount = function(array, name){
-    let friends = [];
-    _.each(array, function(person){
-        if(_.contains(_.pluck(person.friends, name), name)===true){
-            friends.push(person.name);
+    let friends = [];                                               //initialize an array to store the friends our person is friends with
+    _.each(array, function(person){                                 //for each person in our people array, if their friends section contains 
+        if(_.contains((_.map(person.friends, friend => friend.name)), name)===true){    //contains the arguement name
+            friends.push(person.name);                              //push them in the friends array
         }
     });
-    return friends;
+    return friends;                                                 //return the friends array
 };
 
 var topThreeTags = function(array){
