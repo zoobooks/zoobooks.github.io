@@ -71,26 +71,24 @@ function dominantDirection(text) {
   function textScripts(text) {
     let scripts = countBy(text, char => {
       let script = characterScript(char.codePointAt(0));
-      return script ? script.direction : "none"; //edited the original textscripts function to return the direction instead of the name
-    }).filter(({name}) => name != "none");
+      return script ? script.name : "none";
+    }).filter(({
+      name
+    }) => name != "none");
   
-    let total = scripts.reduce((n, {count}) => n + count, 0);
+    let total = scripts.reduce((n, {
+      count
+    }) => n + count, 0);
     if (total == 0) return "No scripts found";
   
-    return scripts.map(({name,count}) => {
+    return scripts.map(({
+      name,
+      count
+    }) => {
       return `${Math.round(count * 100 / total)}% ${name}`;
     }).join(", ");
   }
-  
-  let textResult = textScripts(text); //this textResult holds textscipts new answer
-  /*
-  * after assigning textScripts to return the direction instead of name
-  * next i want to scan the string result for white spaces so i can send (if there are)
-  * multiple answers to an array and then I can potentially evaluate each element
-  */
-  console.log(textResult);
 }
-  
 
 // /////////////////////////////////////////////////////////////////////////////
 //  //////////////////////////////////////////////////////

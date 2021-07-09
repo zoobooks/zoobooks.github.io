@@ -352,10 +352,8 @@ _.map = function (collection, func){                //map takes a collection and
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
-_.pluck = function (arr, prop){                     //pluck takes an array and a property
-    return _.map(arr, function(obj){                //return a newly mapped array with the objects properties "plucked"
-        return obj[prop];                           //from the array
-    });
+_.pluck = function (array, property){                     //pluck takes an array and a property
+    return _.map(array, object => object[property]);      //return array of objects properties
 };
 
 
