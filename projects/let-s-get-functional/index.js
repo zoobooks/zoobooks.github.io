@@ -78,19 +78,39 @@ var friendFirstLetterCount = function(array, name, char){           // takes an 
 };
 
 var friendsCount = function(array, name){
-    let friends = [];                                               //initialize an array to store the friends our person is friends with
-    _.each(array, function(person){                                 //for each person in our people array, if their friends section contains 
-        if(_.contains((_.map(person.friends, friend => friend.name)), name)===true){    //contains the arguement name
-            friends.push(person.name);                              //push them in the friends array
+    let friends = [];                                                                    //initialize an array to store the friends our person is friends with
+    _.each(array, function(person){                                                      //for each person in our people array, if their friends section contains 
+        if(_.contains((_.map(person.friends, friend => friend.name)), name)===true){     //contains the arguement name
+            friends.push(person.name);                                                   //push them in the friends array
         }
     });
-    return friends;                                                 //return the friends array
+    return friends;                                                                 
 };
 
-var topThreeTags = function(array){
-    let tags = _.pluck(array, tags);
-    return tags;
+var topThreeTags = function(array){         // top three tags takes an array and returns the top 3 in total
+    let tags = [];                          //initialize an array to store tags
     
+    _.each(array, function(person){         //for each person push all of the tags
+        tags.push(person.tags);             //to the empty tags array
+    });
+    
+    //by pushing arrays into arrays we get nested arrays, create a flatten function
+    let flatten = array => [].concat.apply([], array);
+    
+    //This is a hashmap to return the most frequent tags in the array
+    function getMostfrequent(arr){                  //it takes an array
+        const hashmap = arr.reduce( (acc,val) => {  //this reduce function
+            acc[val] = (acc[val] || 0 ) + 1 ;       //tallys each element
+            return acc;
+        },{});                                      //and pushes it into an object
+    return Object.keys(hashmap).filter(x => {       //after the array is sorted by most frequent
+        return hashmap[x] == Math.max.apply(null,   //we return the array of sorted tags with
+        Object.values(hashmap));                    //the most frequent starting first
+    });
+    }
+    // call the flatten tags function inside the got most frequent and return a sliced 
+    // result [x,y,z]
+    return getMostfrequent(flatten(tags)).slice(0,3);
 };
 
 //genderCount returns an object that shows all the genders in the dataset (the array)
