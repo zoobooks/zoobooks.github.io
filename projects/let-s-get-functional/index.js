@@ -29,7 +29,7 @@ var femaleCount = array => _.reduce(array, (count, person) => count + (person.ge
 
 var oldestCustomer = function(array){                   // oldest customer takes an array
     let highestAge = 0;                                 // set the highest age equal to 0 as number to compare ages withs, 
-    return _.reduce(array, (acc, person) => {           // we find the oldes with reduce, accumulator keeps compares peoples ages
+    return _.reduce(array, (acc, person) => {           // we find the olds with reduce, accumulator keeps compares peoples ages
         if(person.age > highestAge){                    // if person's age is higher than initial value or the current highest
             highestAge = person.age;                    // set the highest age to the current person's age
             return person.name;                         // this returns the oldest customers name to oldest person

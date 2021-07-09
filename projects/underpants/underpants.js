@@ -325,19 +325,13 @@ _.partition = function (arr, func){                 //partition takes an array a
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-_.map = function (collection, func){                //map takes a collection and a function
-    let result = [];                                //initilize the return array
-    if(_.typeOf(collection)==='array'){             //if the collection is an array
-        _.each(collection, function(e,i,a){         //for each element, index, and the whole array
-            result.push(func(e,i,a));               //use the callback on e,i,a push the result to the new array
-        });
-    }
-    if(_.typeOf(collection)==='object'){            //if the collection is an object
-        _.each(collection, function(key,value,obj){ //for each key value pair and the object
-            result.push(func(key,value,obj));       //perform the function all of them and push the result to the array
-        });
-    }
-    return result;                                  //return the newly mapped array
+_.map = function (collection, func){                        //map takes a collection and a function
+    let result = [];                                        //initialize return array
+    _.each(collection, function(value, index, collection){  //for each value, element, index, collection
+        let mapped = func(value, index, collection);        //perform the function on that element, assign it to a variable
+        result.push(mapped);                                //push the variable to result array
+    });
+    return result;                                          //return the newly mapped array
 };
 
 
