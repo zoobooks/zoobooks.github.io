@@ -99,11 +99,11 @@ var topThreeTags = function(array){         // top three tags takes an array and
     
     //This is a hashmap to return the most frequent tags in the array
     function getMostfrequent(arr){                  //it takes an array
-        const hashmap = arr.reduce( (acc,val) => {  //this reduce function
+        const hashmap = _.reduce(arr, (acc,val) => {  //this reduce function
             acc[val] = (acc[val] || 0 ) + 1 ;       //tallys each element
             return acc;
         },{});                                      //and pushes it into an object
-    return Object.keys(hashmap).filter(x => {       //after the array is sorted by most frequent
+    return _.filter(Object.keys(hashmap), x => {       //after the array is sorted by most frequent
         return hashmap[x] == Math.max.apply(null,   //we return the array of sorted tags with
         Object.values(hashmap));                    //the most frequent starting first
     });

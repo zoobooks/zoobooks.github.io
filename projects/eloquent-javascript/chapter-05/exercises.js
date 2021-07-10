@@ -71,7 +71,7 @@ function dominantDirection(text) {
   function textScripts(text) {
     let scripts = countBy(text, char => {
       let script = characterScript(char.codePointAt(0));
-      return script ? script.name : "none";
+      return script ? script.direction : "none";
     }).filter(({
       name
     }) => name != "none");
@@ -88,7 +88,13 @@ function dominantDirection(text) {
       return `${Math.round(count * 100 / total)}% ${name}`;
     }).join(", ");
   }
+  
+  
 }
+
+
+
+
 
 // /////////////////////////////////////////////////////////////////////////////
 //  //////////////////////////////////////////////////////
