@@ -104,7 +104,7 @@ var topThreeTags = function(array){         // top three tags takes an array and
             return acc;
         },{});                                      //and pushes it into an object
     return _.filter(Object.keys(hashmap), x => {       //after the array is sorted by most frequent
-        return hashmap[x] == Math.max.apply(null,   //we return the array of sorted tags with
+        return hashmap[x] === Math.max.apply(null,   //we return the array of sorted tags with
         Object.values(hashmap));                    //the most frequent starting first
     });
     }
