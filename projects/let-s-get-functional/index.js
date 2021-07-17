@@ -70,11 +70,11 @@ var averageBalance = function(array){
 var firstLetterCount = (array, char) => _.reduce(array, (count, person) => count + (person.name.charAt(0)===char.toUpperCase()), 0);
 
 var friendFirstLetterCount = function(array, name, char){
-    _.each(array, function(person, index){                          
-        if(array[index].name===name){                                  
-            return firstLetterCount(array[index].friends, char);
+    for(let i = 0; i < array.length; i++){                        
+        if(array[i].name===name){                                  
+            return firstLetterCount(array[i].friends, char);
         }
-    });
+    }
 };
 
 var friendsCount = function(array, name){
