@@ -69,12 +69,12 @@ var averageBalance = function(array){
 //matching, the reduce function increments and eventually returns the final number, initial value is "0" because a number is being returned
 var firstLetterCount = (array, char) => _.reduce(array, (count, person) => count + (person.name.charAt(0)===char.toUpperCase()), 0);
 
-var friendFirstLetterCount = function(array, name, char){           // takes an array, name, and character
-    for(let i = 0; i < array.length; i++){                          // lets loop through the array ** NO CONSTRAINTS ON THIS ONE :) **
-        if(array[i].name===name){                                   // if the name in the array matches our name arguement
-            return firstLetterCount(array[i].friends, char);        // call the first letter count function for each friend in the friend list and the car
+var friendFirstLetterCount = function(array, name, char){
+    _.each(array, function(person, index){                          
+        if(array[index].name===name){                                  
+            return firstLetterCount(array[index].friends, char);
         }
-    }
+    });
 };
 
 var friendsCount = function(array, name){

@@ -68,14 +68,15 @@ var range = function(x, y) {
     //if x - y equals 1 or x - y equals 0 return an empty array
     if(x - y === 1 || x - y === 0){
       return [];
-    }
+    }//to meet the condition to everytuall return the first number after x
+    //we must subtract instead of add because x is bigger
     if(x - y === 2){
       return [x-1];
     }
-    else{
-      list = range(x, y+1);
-      list.push(y+1);
-      return list;
+    else{//this is the same logic as x being smaller than y except reversed
+      list = range(x, y+1); //list gets assigned to the function
+      list.push(y+1); //push y to the list array, y has to add to catch up to x
+      return list;//return the list
     }
   }
   //if x and y are equal return an empty array
@@ -90,7 +91,10 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-  return exp < 0 ? exponent(base, exp+1)/base : exp === 0 ? 1 : base*exponent(base, exp-1);
+  //1. if exponent equals 0 then return 1, or exp reaches 0 return the exponent
+  //2. if exp is a negative number, call the function with exponent incrementing divided by base
+  //3. else exp is positive, call the function with the base times expoenet, exp decrements
+  return exp === 0 ? 1 : exp < 0 ? exponent(base, exp+1)/base : base*exponent(base, exp-1);
 };
 
 // 8. Determine if a number is a power of two.
@@ -98,6 +102,9 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //1. is n === 1, then it is a power of 2
+  //2. else n is less than 1 i.e 0, return false
+  //3. this is functin part, call the function and divded n by 2 continuously 
   return n === 1 ? true : (n < 1) ? false : powerOfTwo(n/2);
 };
 
@@ -108,21 +115,30 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //this is the base case, if there is 1 or no characters left then string is a palindrome, return true
   if(string.length < 2){
     return true;
-  }
+  }//this is an instance of ignoring spaces, if first character is a space
+   //and last charactre is a space, ignore the spaces by slicing and returning new string
   if(string[0]===" "&&string[string.length-1]===" "){
     return palindrome(string.slice(1,string.length-1));
-  }
+  }//another case of ignoring spaces, if first space is empty and last space is not
+  //cut the first space and ignore the last, return string with first spot spliced
   if(string[0]===" "&&string[string.length-1]!==" "){
     return palindrome(string.slice(1));
-  }
+  }//anotehr case of ignoring spaces
+  //if the first space has a character and the last space has a space
+  //ignore the first space and splice the string at the last space
   if(string[0]!==" "&&string[string.length-1]===" "){
     return palindrome(string.slice(0,string.length-1));
-  }
+  }//in the case of characters, make them case insensitive
+  //check to see if they're equal after
+  //if the character equal return the funtion with the sliced string at the 
+  //first character spot and the last character spot .e racecar -> aceca
   if(string[0].toLowerCase()===string[string.length-1].toLowerCase()){
     return palindrome(string.slice(1,string.length-1));
   }
+  //if any condition fails then the string is NOT a palindrome
   else{
     return false;
   }
@@ -162,17 +178,28 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  // This function compares a string, if they're equal return true, if no return false
+  // if both strings have been reduced down to 0 in length then they're equal, return true
+  // else if the first characater in both strings are equal, call the function by returning and slice them to their next spaces
+  // if the chracters are not equal then the strings are inequal 
   return str1.length === 0 && str2.length === 0 ? true : str1[0]===str2[0] ? compareStr(str1.slice(1), str2.slice(1)) : false; 
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  //This function turns a str into an array of character made from that string
+  //if the str.length equals 1 return the array of strings 
+  // else str.length is greater than 1
+  // concat the first index in the string to the return array and call the function with the str sliced at 1
   return str.length === 1 ? [str[0]] : [str[0]].concat(createArray(str.slice(1)));
 };
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  //this returns an array except reversed
+  //if the input array equals 0 return empty array, this will return the concatoned array
+  //else if array.length is greater than 0 
   return array.length === 0 ? [] : [array[array.length-1]].concat(reverseArr(array.slice(0,array.length-1)));
 };
 
@@ -180,6 +207,9 @@ var reverseArr = function (array) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  //buildlist takes a value to make and array with a length arguement
+  //if the legnth is equal to 0 return the finished array
+  //if its not 0 concat thee value to the array and call the function with the length -1
   return length === 0 ? [] : [value].concat(buildList(value, length-1));
 };
 
@@ -187,12 +217,20 @@ var buildList = function(value, length) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  //this counts the occurence of a value in a array
+  //if the array length is 0 return the number that function a counter
+  //if its not 0 is the value equal to first index in the array? if it is increment and return the function with the array sliced at 1
+  // if its not equal return array at the first index and don't increment the number
   return array.length===0 ? 0 : array[0]===value ? 1 + countOccurrence(array.slice(1), value) : countOccurrence(array.slice(1), value);
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  //this is a recursive map
+  //if the input array is 0 return the array, else....
+  //the array index of 0 is concatoned with the callback function mapping the index
+  // with the function being called with the array sliced at index 1
   return array.length === 0 ? [] : [callback(array[0])].concat(rMap(array.slice(1), callback));
 };
 
@@ -230,12 +268,15 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  //this function returns the index number of a fib sequence
+  //if the number is less than 0 return null
   if(n<0){
     return null;
   }
+  //if the number equal to 1 return 1
   else if(n === 1){
     return 1;
-  }
+  }//else return the function with n-1 added to the function n-2
   else{
     return nthFibo(n-1) + nthFibo(n-2);
   }
@@ -245,12 +286,20 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+  //this returns all the words capialized in an array
+  //if the array is === to 0 return the input aray
+  //else concatoned the first index to the array but capitalized
+  //and call the function with the array sliced at 1
   return input.length === 0 ? [] : [input[0].toUpperCase()].concat(capitalizeWords(input.slice(1)));
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+  //this takes and array and capitalizes the first letter in each index of the array
+  //if array length is equal to 0 return the array
+  //else capitalize the first character at the first element and array the rest of word the word
+  //that gets concatoned to the array and call the function with the array sliced at 1
   return array.length === 0 ? [] : [array[0].charAt(0).toUpperCase()+array[0].slice(1)].concat(capitalizeFirst(array.slice(1)));
 };
 
@@ -274,17 +323,19 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
+//in this one we define the object in the arguement
 var letterTally = function(str, obj={}) {
+  //if the string is equal to 0 return the completed object
   if(str.length===0){
     return obj;
-  }
+  }//if the index of string at 0 is already in the object
   if(str[0] in obj){
-    obj[str[0]]++;
-    return letterTally(str.slice(1), obj);
+    obj[str[0]]++;//increment the counter in the object
+    return letterTally(str.slice(1), obj);//return the function with the string sliced
   }
-  else{
-    obj[str[0]] = 1;
-    return letterTally(str.slice(1), obj);
+  else{//else if the tally doesn't exist for the element, set it to 1 
+    obj[str[0]] = 1;//this creates the key in the object with the tally
+    return letterTally(str.slice(1), obj);//return the function with the string sliced at 1
   }
 };
 
@@ -294,14 +345,14 @@ var letterTally = function(str, obj={}) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
-  if(list.length===0){
-    return [];
+  if(list.length===0){  //once the list is equal to 0 BASE CASE
+    return [];          //return the array
   }
-  if(list[0]===list[1]){
-    return compress(list.slice(1));
+  if(list[0]===list[1]){ //is the element at 0 and at 1 are equal
+    return compress(list.slice(1)); //slice the array at the 1st element and call the fuctiion
   }
-  if(list[0]!==list[1]){
-    return [list[0]].concat(compress(list.slice(1)));
+  if(list[0]!==list[1]){ //if the elements are not equal concatoned the first element to new array
+    return [list[0]].concat(compress(list.slice(1))); // and call the function that will compare the next element
   }
   
 };
@@ -316,16 +367,17 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 var minimizeZeroes = function(array) {
+  //BASE CASE, if the length of the array is 0
   if(array.length===0){
-    return [];
+    return [];//return the array with the 0's minimized 
   }
-  if(array[0]===0&&array[1]===0){
-    return minimizeZeroes(array.slice(1));
+  if(array[0]===0&&array[1]===0){//if the element at 0 and 1st index are 0's
+    return minimizeZeroes(array.slice(1));//call the function and don't concatonate the first index
   }
-  if(array[0]===0&&array[1]!==0){
-    return [array[0]].concat(minimizeZeroes(array.slice(1)));
+  if(array[0]===0&&array[1]!==0){//if the number at first index is not a 0
+    return [array[0]].concat(minimizeZeroes(array.slice(1)));//concatone that element to the new array and call the function with the array sliced at 1s
   }
-  else{
+  else{//this else will capture any other instance and just concatonate the first element and call the function
     return [array[0]].concat(minimizeZeroes(array.slice(1)));
   }
 };
@@ -335,15 +387,18 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  //BASE CASE, input array is === to 0
   if(array.length===0){
-    return [];
+    return [];//return the array with alternate signs
   }
-  if(array[1]>0){
-      array[1] = (-1 * array[1]);
+  if(array[1]>0){//if the element at 1 is not negative
+      array[1] = (-1 * array[1]);//set it to negative by multiplying it by -1
   }
-  if(array[0]<0){
-    array[0] = (-1 * array[0]);
-  }
+  if(array[0]<0){//if the element at 0 is not positive
+    array[0] = (-1 * array[0]);//set the element by multiplying it by negative 1 i.e -4 x -1 = 4
+  }//finally return the function
+  //concatonate both the first and second index so we evenly increment
+  //return the function with the array sliced at 2
   return [array[0], array[1]].concat(alternateSign(array.slice(2)));
 };
 
@@ -351,6 +406,8 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  //this is a word map that we call upon to exchange numbers for strings
+  //if the number in string is equal to key we can concatonate the word in place of the number
   const wordMap = {
     0: 'zero',  
     1: 'one',   
@@ -362,7 +419,11 @@ var numToText = function(str) {
     7: 'seven', 
     8: 'eight',
     9: 'nine',
-  };
+  };//if the string is equal to 0
+  //return the base case of "" empty string
+  //else is the first element equal to any key in the word map?
+  //if true concatonate the word with + in place of the number and call the function with the rest of the string sent to a substring
+  //if it's not equal add the string to the substring and call the function 
   return str.length===0 ? '' : wordMap[str[0]] ? wordMap[str[0]] + numToText(str.substring(1)) : str[0] + numToText(str.substring(1));
 };
 
