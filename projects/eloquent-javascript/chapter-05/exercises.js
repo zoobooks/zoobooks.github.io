@@ -35,7 +35,6 @@ function every(arr, test) {             //this function tests every element of a
 // /////////////////////////////////////////////////////////////////////////////
 
 function dominantDirection(text) {
-  let resultArr = [];
   
   //The three functions below were included in "Helpers .js"
   function countBy(items, groupName) {        
@@ -56,7 +55,7 @@ function dominantDirection(text) {
   }
   
   function characterScript(code) {
-    for (let script of window.SCRIPTS) {  //had to alter this so the SCRIPTS were able to be accessd globally
+    for (let script of SCRIPTS) {  //had to alter this so the SCRIPTS were able to be accessd globally
       if (script.ranges.some(([from, to]) => {
           return code >= from && code < to;
         })) {
@@ -69,29 +68,17 @@ function dominantDirection(text) {
   
   
   function textScripts(text) {
-    let scripts = countBy(text, char => {
-      let script = characterScript(char.codePointAt(0));
-      return script ? script.direction : "none";
-    }).filter(({
-      name
-    }) => name != "none");
-  
-    let total = scripts.reduce((n, {
-      count
-    }) => n + count, 0);
-    if (total == 0) return "No scripts found";
-  
-    return scripts.map(({
-      name,
-      count
-    }) => {
-      return `${Math.round(count * 100 / total)}% ${name}`;
-    }).join(", ");
+    //this counts each character in the text and determine what most of the text is composed of language wise
+    let scripts = countBy(text, char => {let script = characterScript(char.codePointAt(0));
+    //this returns direction instead of the name now and filters it if there is not a name
+      return script ? script.direction : "none";}).filter(({name}) => name != "none");
+    
+    //this reduce function returns the dominant direction
+    return scripts.reduce((a, b) => a.count > b.count ? a : b).name;
   }
-  
-  
+  //this calls the textScripts direction function
+  return textScripts((text));
 }
-
 
 
 
