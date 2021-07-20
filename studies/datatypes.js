@@ -108,7 +108,7 @@ randy(-Infinity); //returns -Infinity;
 * directed by referring to said indexes, and iterated over with loops.
 */
 
-//lets defined an array of candys
+//lets define an array of candies
 let candy = ["twix", 100000, "M&M's", "Butterfinger"]; //we have a array of strings and one of the elements is a number
 console.log(candy);
 //This console.log prints to console "["twix", 100000, "M&M's", "Butterfinger"]"
@@ -117,6 +117,21 @@ console.log(candy);
 candy.splice(1,1);        //this remove the 100000 element
 candy.push("100 Grand");  // this puts our replacement onto the array
 console.log(candy);       //this will print to console "[ 'twix', "M&M's", 'Butterfinger', '100 Grand' ]"
+candy.pop();              //this will remove the last element in the array "100 grand"
+console.log(candy);       //console prints '[ 'twix', "M&M's", 'Butterfinger' ]'
+
+//we can also access elements directly if we know the index number of what we're trying to access
+console.log(candy[2]);    //this prints to console "Butterfinger," which is stored in index 2 of the array
+
+//we can also access values in an array with a for loop
+                //we can stop parseing array once we reach the end with .length
+for(let i = 0; i < candy.length; i++){
+    console.log(candy[i]); //this function will print each element in our array to console.
+}
+
+//we can also access elements from an array with a for loop and remove them if we need to
+
+
 
 //Objects
 
