@@ -123,7 +123,7 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // if the string are equal (true) return 0, else (falsey) if stringOne is greater return 1 (truthy) else its not, return -1 (falsey)
-    return stringOne === stringTwo ? 0 : stringOne > stringTwo ? 1 : -1;
+    return stringOne === stringTwo ? 0 : stringOne < stringTwo ? 1 : -1;
 }
 
 
@@ -136,7 +136,7 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // if the string are equal (true) return 0, else (falsey) if stringOne is lesser return 1 (truthy) else its not, return -1 (falsey)
-    return stringOne === stringTwo ? 0 : stringOne < stringTwo ? 1 : -1;
+    return stringOne === stringTwo ? 0 : stringOne > stringTwo ? 1 : -1;
 }
 
 
