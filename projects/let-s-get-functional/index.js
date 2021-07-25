@@ -27,16 +27,7 @@ var maleCount = array => _.filter(array, person => person.gender === "male").len
 //female count takes an array and uses reduces to count each instance that a person has the gender "female"
 var femaleCount = array => _.reduce(array, (count, person) => count + (person.gender === "female"), 0);
 
-var oldestCustomer = function(array){                   // oldest customer takes an array
-    let highestAge = 0;                                 // set the highest age equal to 0 as number to compare ages withs, 
-    return _.reduce(array, (acc, person) => {           // we find the olds with reduce, accumulator keeps compares peoples ages
-        if(person.age > highestAge){                    // if person's age is higher than initial value or the current highest
-            highestAge = person.age;                    // set the highest age to the current person's age
-            return person.name;                         // this returns the oldest customers name to oldest person
-        }
-        return acc;                                     // if current person isn't oldest, return accumulator
-    },'');                                              // since we're returning a string set the initial value to empty string
-};
+var oldestCustomer = array => _.reduce(array, (acc, person) => acc.age < person.age ? person.name: acc);
 
 var youngestCustomer = function(array){                 // youngest customer takes an array
     let lowestAge = Infinity;                           // set the youngest age equal to infinity, this ensures the accumulator sets a younger age
