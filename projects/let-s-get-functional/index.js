@@ -116,13 +116,16 @@ var topThreeTags = function(array){         // top three tags takes an array and
 //genderCount returns an object that shows all the genders in the dataset (the array)
 var genderCount = function(array){          
     //first we have to find every occurence of non-binary folks using reduce, reduce counts occurences and sends the number to a variable
-    let nbCount = array => _.reduce(array, (count, person) => count + (person.gender === "non-binary"), 0);
-    
-    return {                                    // return the object
-        female: femaleCount(array),             // call female count function
-        male: maleCount(array),                 // call male count function
-        'non-binary': nbCount(array)            // set non binary count to the nbCount variable
-    };
+    return array.reduce((count, person) => {
+        //if there is no current count for the person
+       if(!count[person.gender]){
+           count[person.gender]=1;//create one and set it to 1
+       }
+       else{
+           count[person.gender]++;//otherwise you're going to increment
+       }
+       return count;//return the accumulator
+    }, {});//we're return an object so set the initial value to empty object
 };
 
 //////////////////////////////////////////////////////////////////////
